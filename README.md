@@ -8,12 +8,12 @@
 - M2 时间解析：`/api/time/normalize`
 - M3 事件去重：`/api/events/dedupe`
 - M4 小时分桶：`/api/buckets/rebuild`
-- M5 迟到修订：`/api/watermark/advance`
+- M5 迟到修订：`/api/watermark/advance`（停用 `/api/watermark/service/disable`，恢复 `/api/watermark/service/enable`，状态 `/api/watermark/services`）
 - M6 批次对账：`/api/export/buckets.csv`
 
         ## 核心规则
 
-        事件先归一到 UTC，DST 重叠时保留 fold；小时桶右端开，水位只能前进且迟到事件仍进入修订。
+        事件先归一到 UTC，DST 重叠时保留 fold；小时桶右端开，水位只能前进且迟到事件仍进入修订。服务停用冻结本服务水位并升启停代次，停用期到达的日志留待恢复；恢复按停用前进度追赶，积压只修订本服务旧桶，其他服务已封结果不变，旧代次推进按 STALE_VERSION 拒绝。
 
         ## 启动
 

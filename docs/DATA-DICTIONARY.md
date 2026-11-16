@@ -8,5 +8,8 @@
 | `raw_value` | string | 是 | 未归一的原始证据 |
 | `normalized_value` | string | 是 | 按项目规则得到的值 |
 | `rule_version` | string | 否 | 计算规则版本 |
+| `generation` | integer | 否 | 服务启停代次，停用或恢复时递增 |
+| `watermark` | string | 是 | 本服务已推进到的 UTC 水位 |
+| `catchup` | string | 否 | 追赶状态：active / disabled / pending / caught_up |
 
 字符串编号逐字保留。金额与计量值用 `Decimal`。时间值带偏移并以 UTC 参与比较。区间统一采用左闭右开。

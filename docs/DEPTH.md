@@ -29,6 +29,8 @@
 | TRAP-14 | 真实边界输入 | 朴素处理会错分 | 保留证据并稳定裁决 | `app/modules/m2_time/core.py` | `tests/test_m2_time.py::test_trap_2` |
 | TRAP-16 | 真实边界输入 | 朴素处理会错分 | 保留证据并稳定裁决 | `app/modules/m3_events/core.py` | `tests/test_m3_events.py::test_trap_2` |
 | TRAP-23 | 真实边界输入 | 朴素处理会错分 | 保留证据并稳定裁决 | `app/modules/m4_buckets/core.py` | `tests/test_m4_buckets.py::test_trap_2` |
+| TRAP-31 | 恢复服务积压被共用水位吞掉 | 整体水位倒退会重开他服务已封小时 | 按服务保留进度与启停代次，积压只修订本服务旧桶 | `app/modules/m5_watermark/core.py` | `tests/test_m5_watermark.py::test_enable_resumes_frozen_progress_and_revises_only_own_old_buckets` |
+| TRAP-32 | 停用期旧代次并发推进、中断重跑 | 朴素处理会错分 | 旧代次按 STALE_VERSION 拒绝，从已接收位置恢复且重跑不重复计数 | `app/modules/m5_watermark/core.py` | `tests/test_m5_watermark.py::test_stale_generation_rejected` |
 
         ## 对账规则
 
